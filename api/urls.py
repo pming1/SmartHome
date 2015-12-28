@@ -18,6 +18,5 @@ urlpatterns = [
     url(r'^switches/(?P<pk>[0-9]+)/(?P<action>.+)/$', views.switch_control),
 ]
 
-# urlpatterns = format_suffix_patterns(urlpatterns)
 
 

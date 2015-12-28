@@ -29,4 +29,25 @@ urlpatterns = [
     url(r'^api/', include('api.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^polls/', include('polls.urls', namespace="polls")),
+    url(r'^wechat', include('wechat.urls', namespace="wechat")),
 ]
+
+from wiki.urls import get_pattern as get_wiki_pattern
+from django_nyt.urls import get_pattern as get_nyt_pattern
+urlpatterns += [
+    url(r'^wiki/notifications/', get_nyt_pattern()),
+    url(r'^wiki', get_wiki_pattern())
+]
+
+# from SmartHome import settings
+#
+# if settings.DEBUG:
+#     urlpatterns += staticfiles_urlpatterns()
+#     urlpatterns += patterns('',
+#                             url(r'^media/(?P<path>.*)$',
+#                                 'django.views.static.serve',
+#                                 {'document_root': settings.MEDIA_ROOT,
+#                                  }),
+#                             )
+
+# urlpatterns = format_suffix_patterns(urlpatterns)

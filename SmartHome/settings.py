@@ -43,6 +43,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'polls',
+    'attendance',
+    'django.contrib.sites', # django 1.6.2
+    'django.contrib.humanize',
+    'django_nyt',
+    'mptt',
+    'sekizai',
+    'sorl.thumbnail',
+    'wiki',
+    'wiki.plugins.attachments',
+    'wiki.plugins.notifications',
+    'wiki.plugins.images',
+    'wiki.plugins.macros',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -75,6 +87,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django.core.context_processors.debug",
+                "sekizai.context_processors.sekizai",
             ],
         },
     },
@@ -119,3 +133,5 @@ TEMPLATE_LOADERS = (
 )
 
 # ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+
+SITE_ID = 1
