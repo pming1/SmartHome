@@ -17,8 +17,8 @@ class Attendance(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
-    # def __str__(self):
-    #     return self.question_text
+    def __str__(self):
+        return self.checking_date_sys.strftime("%A, %d. %B %Y %I:%M%p")
 
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True

@@ -1,3 +1,4 @@
+# coding=utf-8
 """SmartHome URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -34,20 +35,21 @@ urlpatterns = [
 
 from wiki.urls import get_pattern as get_wiki_pattern
 from django_nyt.urls import get_pattern as get_nyt_pattern
+
 urlpatterns += [
-    url(r'^wiki/notifications/', get_nyt_pattern()),
+    url(r'^wiki/notifications', get_nyt_pattern()),
     url(r'^wiki', get_wiki_pattern())
 ]
 
-# from SmartHome import settings
-#
-# if settings.DEBUG:
-#     urlpatterns += staticfiles_urlpatterns()
-#     urlpatterns += patterns('',
-#                             url(r'^media/(?P<path>.*)$',
-#                                 'django.views.static.serve',
-#                                 {'document_root': settings.MEDIA_ROOT,
-#                                  }),
-#                             )
+from django.conf import settings
+from django.contrib.staticfiles import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += [
+        url(r'^static/(?P<path>.*)$', views.serve),
+    ]
+
 
 # urlpatterns = format_suffix_patterns(urlpatterns)

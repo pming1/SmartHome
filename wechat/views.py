@@ -56,14 +56,12 @@ def parse_text(wechat_context):
     if "2222" in message.content:
         d = {"expire_seconds": 604800, "action_name": "QR_SCENE", "action_info": {"scene": {"scene_id": 123}}}
         return wechat_context.response_text(wechat_context.create_qrcode(dict(d)))
-    if 'kq' in message.content:
-        print "hello"
+    if u"考勤" in message.content:
         from attendance.models import Attendance, AttendanceParam
         import datetime
         now = datetime.datetime.now()
         a = Attendance(checking_date_sys=now, type="morning", remark_text="test")
         a.save()
-        print "world"
         return wechat_context.response_text(Attendance.objects.all())
         pass
     # if "QA" or "qa" in message.content:

@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'api',
     'polls',
     'attendance',
+]
+
+WIKI_APP = [
     'django.contrib.sites', # django 1.6.2
     'django.contrib.humanize',
     'django_nyt',
@@ -56,6 +59,11 @@ INSTALLED_APPS = [
     'wiki.plugins.images',
     'wiki.plugins.macros',
 ]
+
+INSTALLED_APPS += WIKI_APP
+
+if 'wiki' in INSTALLED_APPS:
+    SITE_ID = 1
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -126,6 +134,14 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    'D:\\Program Files\\Python\\Lib\\site-packages\\wiki-0.1.dev0-py2.7.egg\\wiki\\static',
+]
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+]
 
 TEMPLATE_LOADERS = (
     'django_jinja.loaders.AppLoader',
@@ -134,4 +150,3 @@ TEMPLATE_LOADERS = (
 
 # ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 
-SITE_ID = 1
